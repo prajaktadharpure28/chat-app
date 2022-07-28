@@ -1,36 +1,54 @@
-
+import React,{useState, useEffect} from 'react';
 import './App.css';
-import SendMessage from './SendMessage/SendMessage';
-import ReceivedMessage from './ReceivedMessage/ReceivedMessage';
+import Auth from './Auth/Auth';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import axios from 'axios';
+import LocalStorage from'./LocalStorage/LocalStorage';
 
-const data =[
-{
-  user: 'Prajakta',
-  message: 'hello'
-},
-{
-  user: 'Yash',
-  message: 'hello'
-},
-{
-  user: 'Vaibhavi',
-  message: 'hiiiiii'
-},
-{
-  user: 'Anand',
-  message: 'hey'
-},
-{
-  user: 'Tejal',
-  message: 'gm'
-}
-]
 
 function App() {
-  const currentUser = 'Prajakta';
+
+    // const [data, setData] = useState([]);
+  
+    // const [currentUser, setCurrentUser] = useState("");
+  
+    // const [currentMessage, setCurrentMessage] = useState("");
+  
+    // const [fetchTrigger, setFetchTrigger] = useState(false);
+  
+  
+    // useEffect(() => {
+    //   async function fetchData() {
+    //     const response = await axios.get('/message');
+    //     setData(response.data);
+    //   }
+    //   fetchData();
+    // }, [fetchTrigger]);
+  
+    // function sendMessage() {
+    //   axios.post('/message', {
+    //     user: currentUser,
+    //     messageType: "text",
+    //     messageBody: currentMessage
+    //   })
+    //   setCurrentMessage("");
+    //   setFetchTrigger(!fetchTrigger);
+  
+    // }
+   
+
   return (
     <>
-    <div className='container'>
+    <BrowserRouter>
+    <Routes>
+    <Route path="/LocalStorage" element={<LocalStorage/>} />
+    <Route path="/Auth" element={<Auth/>} />
+    
+  
+    
+    </Routes>
+    </BrowserRouter>
+    {/* <div className='container'>
     <div className='title'>
     <div className='text-center'>
       <h2>Chat-Application</h2>
@@ -42,18 +60,29 @@ function App() {
     {
           data.map((item, index) => {
             if(item.user === currentUser){
-              return <SendMessage key={index} user={item.user} message={item.message} />
+              return <SendMessage key={index} user={item.user} message={item.messageBody} />
               
             }
             else{
-              return <ReceivedMessage key={index} user={item.user} message={item.message} />
+              return <ReceivedMessage key={index} user={item.user} message={item.messageBody} />
             }
           })
        }
+
+<input type="text" className="form-control mt-3" placeholder="Enter Username..."
+       onChange={(e)=>{setCurrentUser(e.target.value)}} />
+
+       <input type="text" className="form-control mt-3" placeholder="Enter Message..."
+        value={currentMessage}
+       onChange={(e)=>{setCurrentMessage(e.target.value)}} />
+       
+       <button className="btn btn-primary mt-3"
+       onClick={sendMessage}>Send</button>
     </div>
-    </div>
+
+    
+    </div> */}
     </>
   );
-}
-
+      }
 export default App;

@@ -7,9 +7,15 @@ const PORT = 5000;
 const app = express();
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://prajudharpure:prajakta@cluster0.vzgzz.mongodb.net/?retryWrites=true&w=majority',()=>{
-    console.log('connected to mongodb')
-})
+mongoose.connect(process.env.MONGODB_URI,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+},()=>{
+  console.log('MongoDB Connected...!');
+});
+// mongoose.connect('mongodb+srv://anand123:anand123@nursery-plant.mpanrx9.mongodb.net/?retryWrites=true&w=majority',()=>{
+//     console.log('connected to mongodb')
+// })
 
 app.get('/health',(req, res) => {
     res.json({
